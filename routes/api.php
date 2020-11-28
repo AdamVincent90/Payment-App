@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentConfirmationController;
+use App\Http\Controllers\UserPaymentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +17,4 @@ use App\Http\Controllers\PaymentConfirmationController;
 */
 
 Route::get('/confirmation/{resourcePath}', PaymentConfirmationController::class)->name('payment.confirmation');
+Route::get('/users/{id}/payments', UserPaymentsController::class)->name('user.payments');
