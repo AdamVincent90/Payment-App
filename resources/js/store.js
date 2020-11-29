@@ -33,5 +33,10 @@ export default {
             commit("setIsLoggedIn", false);
             logOut();
         }
+       },
+       getters: {
+           getUser: state => {
+               return state.user;
+           }
        }
 }

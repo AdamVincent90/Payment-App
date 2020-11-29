@@ -11,12 +11,16 @@ class Payment extends Model
 
     protected $fillable = [
         "id",
-        'merchant_transactions_id',
+        'payment_code',
+        'merchant_transaction_id',
         'currency',
         'payment_type',
         'ndc',
         'amount',
-        'user_id'
+        'payment_brand',
+        'user_id',
+        'created_at',
+        'refunded'
     ];
 
 

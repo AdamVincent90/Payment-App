@@ -31,12 +31,14 @@ class PaymentFactory extends Factory
         ];
 
         return [
-            'id' => $this->faker->randomNumber(8),
+            'payment_code' => $this->faker->randomNumber(8),
             'merchant_transaction_id' => Str::random(20),
             'currency' => $this->faker->currencyCode,
             'payment_type' => $paymentTypes[random_int(0, 2)],
+            'payment_brand' => 'VISA',
             'amount' => $this->faker->randomNumber(2),
-            'ndc' => Str::random(20)
+            'ndc' => Str::random(20),
+            'refunded' => 0,
         ];
     }
 }

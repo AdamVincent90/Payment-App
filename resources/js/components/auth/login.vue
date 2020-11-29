@@ -1,5 +1,5 @@
 <template>
-    <div class="container pt-5">
+    <div class="container pt-2">
         <h1 class="text-primary text-center">Log into your account</h1>
         <div class="d-flex justify-content-center ">
             <div class="mt-5 bg-white ">
@@ -8,10 +8,10 @@
                     class="spinner-border text-primary"
                     role="status"
                 ></div>
-                <div v-else class="pt-2">
+                <div v-else class="pt-1 bg-primary border border-secondary w-75 container">
                     <div class="form-row p-3">
                         <div class="form-group col-12">
-                            <label for="email" class="form-label"
+                            <label for="email" class="form-label text-light"
                                 >Email Address:
                             </label>
                             <input
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="form-group col-12">
-                            <label for="password" class="form-label"
+                            <label for="password" class="form-label text-light"
                                 >Password:
                             </label>
                             <input
@@ -57,26 +57,18 @@
                             </div>
                         </div>
                         <div class="form-group col-12 text-center w-100">
-                            <button class="btn-primary" @click="validate()">
+                            <button class="btn-light" @click="validate()">
                                 Login
                             </button>
                         </div>
                         <div class="form-group col-12 text-center">
-                            <strong
+                            <strong class="text-light"
                                 >New user?
-                                <router-link :to="{ name: 'register' }"
+                                <router-link class="text-light" :to="{ name: 'register' }"
                                     >Register</router-link
                                 >
                                 here.</strong
                             >
-                        </div>
-                        <div class="form-group col-12 text-center">
-                            <strong
-                                >Forgot your Password?
-                                <router-link :to="{ name: 'reset' }"
-                                    >Reset here.</router-link
-                                >
-                            </strong>
                         </div>
                     </div>
                 </div>
@@ -124,3 +116,13 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+    label {
+        font-weight: bolder;
+    }
+    .invalid-feedback {
+        font-weight: bold;
+        color: white;
+    }
+</style>

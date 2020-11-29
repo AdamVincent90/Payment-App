@@ -15,13 +15,19 @@ class PaymentGatewayController extends Controller
     public function __invoke(Request $request)
     {
 
-        $result = $request->all();
+        $result = $request->validate(
+            [
+                "reference" => "required|numeric|digits_between:10,15",
+                "amount" => "required|numeric",
+                "currency" => "required"
+            ]
+        );
 
         $url = "https://test.oppwa.com/v1/checkouts";
         $data = "entityId=8ac7a4ca759cd78501759dd759ad02df" .
-            "&amount=".$result['amount'] .
-            "&currency=".$result['currency'] .
-            "&merchantTransactionId=".$result['reference'] .
+            "&amount=" . $result['amount'] .
+            "&currency=" . $result['currency'] .
+            "&merchantTransactionId=" . $result['reference'] .
             "&paymentType=DB";
 
         $ch = curl_init();

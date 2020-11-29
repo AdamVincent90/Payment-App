@@ -1,14 +1,24 @@
 <template>
     <div>
-        PAYMENT COMPLETE
         <div
             v-if="loading"
-            class="spinner-border text-primary"
+            class="spinner-border text-primary text-center"
             role="status"
         ></div>
         <div v-else class="container">
-            <p>{{ resultCode }}</p>
-            <p>{{ resultDescription }}</p>
+            <div class="card">
+                <div class="card-header bg-light">
+                    <h1 class="text-primary">Payment Complete</h1>
+                </div>
+                <div class="card-body">
+                    <strong>Code: {{ resultCode }}</strong>
+                    <h3>{{ resultDescription }}</h3>
+                    <p>Your payments can be viewed from your landing page</p>
+                </div>
+                <div class="card-footer bg-light">
+                    <router-link :to="{name: 'landing'}">Back</router-link>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -20,7 +30,8 @@ export default {
             resultCode: null,
             resultDescription: null,
             loading: false,
-            errors: null
+            errors: null,
+            paymentData: null
         };
     },
     async mounted() {
@@ -34,7 +45,23 @@ export default {
             if (response.status === 200) {
                 this.resultCode = response.data.result.code;
                 this.resultDescription = response.data.result.description;
-                console.log(response);
+
+                try {
+                    const user = await axios.get("/user");
+                    console.log(user.data.id);
+                    const addPayment = await axios.post("/api/payments", {
+                        paymentInfo: response.data,
+                        userId: user.data.id
+                    });
+
+                    if (addPayment.status === 200) {
+                        console.log("payment added");
+                        console.log(addPayment);
+                    }
+                } catch (error) {
+                    console.log(error);
+                }
+
                 this.loading = false;
             }
         } catch (error) {

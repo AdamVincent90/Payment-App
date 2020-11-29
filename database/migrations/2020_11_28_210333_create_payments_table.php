@@ -15,11 +15,14 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
+            $table->string('payment_code');
             $table->string('merchant_transaction_id')->unique();
             $table->string('currency');
             $table->string('payment_type');
+            $table->string('payment_brand');
             $table->string('ndc');
-            $table->integer('amount');
+            $table->decimal('amount');
+            $table->integer('refunded');
             $table->foreignId('user_id')->constrained('users', 'id');
             $table->timestamps();
         });

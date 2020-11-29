@@ -1,14 +1,14 @@
 <template>
-    <div class="container w-lg-50 pt-5">
+    <div class="container w-lg-50 pt-3">
         <h2 class="text-primary pb-2">Register your details</h2>
         <div v-if="loading" class="spinner-border text-primary" role="status"></div>
-        <div v-else class="row bg-white border border-primary">
+        <div v-else class="row bg-primary border border-secondary">
             <div class="col-12 pt-2">
-                <label for="address" class="control-form font-weight-bolder"
+                <label for="address" class="control-form font-weight-bolder text-light"
                     >Name and Email</label
                 >
             </div>
-            <div class="col-lg-6 border-bottom ">
+            <div class="col-lg-6 pb-1">
                 <input
                     type="text"
                     placeholder="Email"
@@ -25,7 +25,7 @@
                     {{ error }}
                 </div>
             </div>
-            <div class="col-lg-6 border-bottom pb-2">
+            <div class="col-lg-6 pb-2 border-light">
                 <input
                     type="text"
                     placeholder="Full Name"
@@ -43,7 +43,7 @@
                 </div>
             </div>
             <div class="col-12 pt-2">
-                <label for="address" class="control-form font-weight-bolder"
+                <label for="address" class="control-form font-weight-bolder text-light"
                     >Address</label
                 >
             </div>
@@ -81,7 +81,7 @@
                     {{ error }}
                 </div>
             </div>
-            <div class="col-lg-4 border-bottom pb-2">
+            <div class="col-lg-4 pb-2">
                 <input
                     type="text"
                     placeholder="City"
@@ -98,7 +98,7 @@
                     {{ error }}
                 </div>
             </div>
-            <div class="col-lg-4 border-bottom pb-2">
+            <div class="col-lg-4 pb-2">
                 <input
                     type="text"
                     placeholder="Postcode"
@@ -115,7 +115,7 @@
                     {{ error }}
                 </div>
             </div>
-            <div class="col-lg-4 border-bottom pb-2">
+            <div class="col-lg-4 border-light pb-2">
                 <input
                     type="text"
                     placeholder="Country"
@@ -133,11 +133,11 @@
                 </div>
             </div>
             <div class="col-12 pt-2">
-                <label for="password" class="control-form font-weight-bolder"
+                <label for="password" class="control-form font-weight-bolder text-light"
                     >Create Password</label
                 >
             </div>
-            <div class="col-lg-6 border-bottom">
+            <div class="col-lg-6 pb-2">
                 <input
                     type="password"
                     placeholder="Password"
@@ -154,7 +154,7 @@
                     {{ error }}
                 </div>
             </div>
-            <div class="col-lg-6 border-bottom pb-2">
+            <div class="col-lg-6 pb-2">
                 <input
                     type="password"
                     placeholder="Confirm Password"
@@ -171,14 +171,14 @@
                     {{ error }}
                 </div>
             </div>
-            <div class="col-12 pt-2 pb-1 text-center">
-                <button class="btn-primary w-75" @click.prevent="register">
+            <div class="col-12 pt-4 pb-1 text-center">
+                <button class="btn-light w-75" @click.prevent="register">
                     Register
                 </button>
             </div>
-            <strong class="p-2"
+            <strong class="p-2 text-light"
                 >Already Registered?
-                <router-link :to="{ name: 'login' }"
+                <router-link class="text-light" :to="{ name: 'login' }"
                     >Log In here</router-link
                 ></strong
             >
@@ -231,3 +231,10 @@ export default {
     }
 };
 </script>
+
+<style scoped>
+.invalid-feedback {
+    color: white;
+    font-weight: bold;
+}
+</style>

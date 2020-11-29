@@ -1,32 +1,52 @@
 <template>
-    <div class="card">
-        <div class="card-header">
-            Reference: {{id}}
-        </div>
-        <div class="card-body">
-            <div class="row">
+        <div class="col-lg-4 col-md-6 col-sm-6 mb-2">
+        <div class="card">
+            <div class="card-header bg-primary text-light">
+                Reference: {{ merchant_transaction_id }}
+            </div>
+            <div class="card-body row">
                 <div class="col-6">
-                   Amount: {{amount}}
+                    <strong>Amount: {{ amount }}</strong>
                 </div>
                 <div class="col-6">
-                    {{created_at}}
+                    <strong>Date: {{ created_at }}</strong>
+                    </div>
+                </div>
+                <div v-if="!refunded" class="card-footer bg-white text-center">
+                    <button class="btn-primary" @click="loadRefund()">Request Refund</button>
+                </div>
+                <div v-else class="text-center">
+                    <p>Payment refunded</p>
                 </div>
             </div>
-             <div class="card-footer bg-white text-center pt-2">
-                    <button class="btn-primary">Request Refund</button>
-                </div>
         </div>
-    </div>
 </template>
 
 <script>
 export default {
     props: {
         created_at: String,
-        id: [Number, String],
-        amount: [Number, String]
+        merchant_transaction_id: [Number, String],
+        amount: [Number, String],
+        payment_code: [String, Number],
+        id: [String, Number],
+        refunded: Number
     },
+    methods: {
+       async loadRefund() {
 
+            try {
+               const req = await axios.post(`/api/payments/${this.id}/${this.payment_code}`);
+                console.log(req);
 
-}
+                if(req.status === 200) {
+                    alert(req.data.result.description);
+                    this.$router.go();
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        }
+    }
+};
 </script>

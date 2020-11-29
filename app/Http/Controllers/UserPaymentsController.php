@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-
+use App\Http\Resources\PaymentResource;
 use Illuminate\Http\Request;
 
 class UserPaymentsController extends Controller
@@ -18,6 +18,6 @@ class UserPaymentsController extends Controller
     {
         $user = User::findOrFail($id);
 
-        return $user->payments()->latest()->get();
+        return PaymentResource::collection($user->payments()->latest()->get());
     }
 }
