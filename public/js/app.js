@@ -2008,6 +2008,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2047,7 +2052,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 setTimeout(function () {
                   _this.$router.push({
-                    name: 'landing'
+                    name: "landing"
                   });
                 }, 2000);
                 _context.next = 16;
@@ -2616,8 +2621,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2628,7 +2631,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       referenceId: null,
       payments: null,
       loading: false,
-      errors: null
+      errors: null,
+      user: null
     };
   },
   components: {
@@ -2657,28 +2661,29 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
             case 6:
               user = _context.sent;
-              _context.next = 9;
+              _this.user = user.data.name;
+              _context.next = 10;
               return axios.get("/api/users/".concat(user.data.id, "/payments"));
 
-            case 9:
+            case 10:
               request = _context.sent;
               _this.payments = request.data.data;
               console.log(_this.payments);
               _this.loading = false;
-              _context.next = 18;
+              _context.next = 19;
               break;
 
-            case 15:
-              _context.prev = 15;
+            case 16:
+              _context.prev = 16;
               _context.t0 = _context["catch"](1);
               console.log(_context.t0);
 
-            case 18:
+            case 19:
             case "end":
               return _context.stop();
           }
         }
-      }, _callee, null, [[1, 15]]);
+      }, _callee, null, [[1, 16]]);
     }))();
   },
   methods: {
@@ -2697,7 +2702,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return axios.post("/payment", {
                   amount: _this2.amount,
                   reference: _this2.reference,
-                  currency: _this2.selected
+                  currency: _this2.selected,
+                  user: _this2.user
                 });
 
               case 4:
@@ -2781,6 +2787,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     created_at: String,
@@ -2814,15 +2828,17 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.$router.go();
                 }
 
-                _context.next = 11;
+                _context.next = 12;
                 break;
 
               case 8:
                 _context.prev = 8;
                 _context.t0 = _context["catch"](0);
-                console.log(_context.t0);
+                alert(_context.t0.req.data.errors);
 
-              case 11:
+                _this.$router.go();
+
+              case 12:
               case "end":
                 return _context.stop();
             }
@@ -2869,6 +2885,22 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_1__["mapState"])({
@@ -2884,13 +2916,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             switch (_context.prev = _context.next) {
               case 0:
                 try {
-                  axios.post('/logout');
+                  axios.post("/logout");
 
-                  _this.$store.dispatch('logout');
+                  _this.$store.dispatch("logout");
 
-                  _this.$router.push('/');
+                  _this.$router.push("/");
                 } catch (error) {
-                  _this.$store.dispatch('logout');
+                  _this.$store.dispatch("logout");
                 }
 
               case 1:
@@ -7346,7 +7378,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\nlabel[data-v-6aa0b866] {\n    font-weight: bolder;\n}\n.invalid-feedback[data-v-6aa0b866] {\n    font-weight: bold;\n    color: white;\n}\n", ""]);
+exports.push([module.i, "\nlabel[data-v-6aa0b866] {\r\n    font-weight: bolder;\n}\n.invalid-feedback[data-v-6aa0b866] {\r\n    font-weight: bold;\r\n    color: white;\n}\r\n", ""]);
 
 // exports
 
@@ -40004,7 +40036,7 @@ var render = function() {
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "d-flex justify-content-center " }, [
-      _c("div", { staticClass: "mt-5 bg-white " }, [
+      _c("div", { staticClass: "mt-5" }, [
         _vm.loading
           ? _c("div", {
               staticClass: "spinner-border text-primary",
@@ -40138,7 +40170,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "div",
-                    { staticClass: "form-group col-12 text-center w-100" },
+                    { staticClass: "form-group col-12 text-center w-75" },
                     [
                       _c(
                         "button",
@@ -40639,7 +40671,7 @@ var render = function() {
             _c(
               "button",
               {
-                staticClass: "btn-light w-75",
+                staticClass: "btn-light w-50",
                 on: {
                   click: function($event) {
                     $event.preventDefault()
@@ -40737,10 +40769,12 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", [
     _vm.loading
-      ? _c("div", {
-          staticClass: "spinner-border text-primary text-center",
-          attrs: { role: "status" }
-        })
+      ? _c("div", { staticClass: "text-center mt-5" }, [
+          _c("p", {
+            staticClass: "spinner-border text-primary",
+            attrs: { role: "status" }
+          })
+        ])
       : _c("div", { staticClass: "container" }, [
           _c("div", { staticClass: "card" }, [
             _vm._m(0),
@@ -40757,7 +40791,7 @@ var render = function() {
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "card-footer bg-light" },
+              { staticClass: "card-footer bg-light text-primary" },
               [
                 _c("router-link", { attrs: { to: { name: "landing" } } }, [
                   _vm._v("Back")
@@ -41027,11 +41061,12 @@ var render = function() {
           ]),
           _vm._v(" "),
           _vm.loading
-            ? _c("div", {
-                staticClass:
-                  "spinner-border d-flex text-primary justify-self-center",
-                attrs: { role: "status" }
-              })
+            ? _c("div", { staticClass: "text-center" }, [
+                _c("p", {
+                  staticClass: "spinner-border mt-5 text-primary",
+                  attrs: { role: "status" }
+                })
+              ])
             : _c(
                 "div",
                 { staticClass: "row d-flex align-items-stretch" },
@@ -41069,46 +41104,56 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "col-lg-4 col-md-6 col-sm-6 mb-2" }, [
-    _c("div", { staticClass: "card" }, [
-      _c("div", { staticClass: "card-header bg-primary text-light" }, [
-        _vm._v(
-          "\n        Reference: " +
-            _vm._s(_vm.merchant_transaction_id) +
-            "\n    "
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "card-body row" }, [
-        _c("div", { staticClass: "col-6" }, [
-          _c("strong", [_vm._v("Amount: " + _vm._s(_vm.amount))])
+  return _c(
+    "div",
+    { staticClass: "col-lg-4 col-md-6 col-sm-6 mb-2 p-0 align-self-stretch" },
+    [
+      _c("div", { staticClass: "card", staticStyle: { height: "100%" } }, [
+        _c("div", { staticClass: "card-header bg-primary text-light" }, [
+          _vm._v("\n            Reference: "),
+          _c("strong", [_vm._v(_vm._s(_vm.merchant_transaction_id))])
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "col-6" }, [
-          _c("strong", [_vm._v("Date: " + _vm._s(_vm.created_at))])
-        ])
-      ]),
-      _vm._v(" "),
-      !_vm.refunded
-        ? _c("div", { staticClass: "card-footer bg-white text-center" }, [
-            _c(
-              "button",
-              {
-                staticClass: "btn-primary",
-                on: {
-                  click: function($event) {
-                    return _vm.loadRefund()
-                  }
-                }
-              },
-              [_vm._v("Request Refund")]
+        _c("div", { staticClass: "card-body row" }, [
+          _c("div", { staticClass: "col-6" }, [
+            _c("strong", [_vm._v("Amount: " + _vm._s(_vm.amount))])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-6" }, [
+            _c("strong", [_vm._v("Date: " + _vm._s(_vm.created_at))])
+          ])
+        ]),
+        _vm._v(" "),
+        !_vm.refunded
+          ? _c(
+              "div",
+              { staticClass: "card-footer border-white bg-white text-center" },
+              [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn-primary",
+                    on: {
+                      click: function($event) {
+                        return _vm.loadRefund()
+                      }
+                    }
+                  },
+                  [_vm._v("\n                Request Refund\n            ")]
+                )
+              ]
             )
-          ])
-        : _c("div", { staticClass: "text-center" }, [
-            _c("p", [_vm._v("Payment refunded")])
-          ])
-    ])
-  ])
+          : _c(
+              "div",
+              {
+                staticClass:
+                  "text-center pb-3 border-white card-footer bg-white"
+              },
+              [_c("strong", [_vm._v("Payment Refunded")])]
+            )
+      ])
+    ]
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -41140,6 +41185,15 @@ var render = function() {
           "navbar bg-primary border-bottom border-shadow navbar-light mb-1"
       },
       [
+        _c(
+          "p",
+          {
+            staticClass: "brand-logo text-light",
+            staticStyle: { "letter-spacing": "2px" }
+          },
+          [_vm._v("\n            Transaction App\n        ")]
+        ),
+        _vm._v(" "),
         !_vm.isLoggedIn
           ? _c(
               "router-link",
@@ -58283,8 +58337,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_auth_register__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/auth/register */ "./resources/js/components/auth/register.vue");
 /* harmony import */ var _components_landing_landing__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/landing/landing */ "./resources/js/components/landing/landing.vue");
 /* harmony import */ var _components_landing_confirmation__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/landing/confirmation */ "./resources/js/components/landing/confirmation.vue");
-/* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
-
 
 
 
@@ -58303,24 +58355,13 @@ var routes = [{
   name: "register",
   component: _components_auth_register__WEBPACK_IMPORTED_MODULE_2__["default"]
 }, {
-  path: "/reset",
-  name: "reset",
-  component: _components_auth_register__WEBPACK_IMPORTED_MODULE_2__["default"]
-}, {
-  path: "/landing/",
+  path: "/landing",
   name: "landing",
-  component: _components_landing_landing__WEBPACK_IMPORTED_MODULE_3__["default"] // beforeEnter: (to, from, next) => {
-  //     if(store.dispatch("checkUser")) {
-  //         next();
-  //     } else {
-  //         next({name: "login"});
-  //     }
-  // }
-
+  component: _components_landing_landing__WEBPACK_IMPORTED_MODULE_3__["default"]
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
   routes: routes,
-  mode: 'history'
+  mode: "history"
 });
 /* harmony default export */ __webpack_exports__["default"] = (router);
 
@@ -58361,7 +58402,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   actions: {
     loadState: function loadState(_ref) {
       var commit = _ref.commit;
-      commit('setIsLoggedIn', Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["checkLoggedIn"])());
+      commit("setIsLoggedIn", Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["checkLoggedIn"])());
     },
     checkUser: function checkUser(_ref2) {
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
@@ -58379,7 +58420,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _context.prev = 2;
                 _context.next = 5;
-                return axios.get('/user');
+                return axios.get("/user");
 
               case 5:
                 user = _context.sent.data;
@@ -58401,8 +58442,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee, null, [[2, 10]]);
       }))();
     },
-    logout: function logout(_ref3) {
+    fetchUserSession: function fetchUserSession(_ref3) {
       var commit = _ref3.commit;
+      commit("setIsLoggedIn", localStorage.getItem("isLoggedIn"));
+    },
+    logout: function logout(_ref4) {
+      var commit = _ref4.commit;
       commit("addUser", {});
       commit("setIsLoggedIn", false);
       Object(_utils_auth__WEBPACK_IMPORTED_MODULE_1__["logOut"])();

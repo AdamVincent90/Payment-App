@@ -37,7 +37,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-    
+
         $paymentInfo = $request->paymentInfo;
         $user = User::findOrFail($request->userId);
 
@@ -56,8 +56,6 @@ class PaymentController extends Controller
         $user->payments()->save($payment);
 
         return $user;
-
-
     }
 
     /**

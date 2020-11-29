@@ -3,7 +3,6 @@ import Login from "./components/auth/login";
 import Register from "./components/auth/register";
 import Landing from "./components/landing/landing";
 import Confirmation from "./components/landing/confirmation";
-import store from "./store";
 
 const routes = [
     {
@@ -22,27 +21,15 @@ const routes = [
         component: Register
     },
     {
-        path: "/reset",
-        name: "reset",
-        component: Register
-    },
-    {
-        path: "/landing/",
+        path: "/landing",
         name: "landing",
-        component: Landing,
-        // beforeEnter: (to, from, next) => {
-        //     if(store.dispatch("checkUser")) {
-        //         next();
-        //     } else {
-        //         next({name: "login"});
-        //     }
-        // }
+        component: Landing
     }
 ];
 
 const router = new VueRouter({
     routes,
-    mode: 'history',
+    mode: "history"
 });
 
 export default router;

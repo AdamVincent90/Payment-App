@@ -19,16 +19,18 @@ class PaymentGatewayController extends Controller
             [
                 "reference" => "required|numeric|digits_between:10,15",
                 "amount" => "required|numeric",
-                "currency" => "required"
+                "currency" => "required",
+                "user" => "required"
             ]
         );
-
+        
         $url = "https://test.oppwa.com/v1/checkouts";
         $data = "entityId=8ac7a4ca759cd78501759dd759ad02df" .
             "&amount=" . $result['amount'] .
             "&currency=" . $result['currency'] .
             "&merchantTransactionId=" . $result['reference'] .
-            "&paymentType=DB";
+            "&paymentType=DB" .
+            "&customer.givenName=".$result['user'];
 
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);

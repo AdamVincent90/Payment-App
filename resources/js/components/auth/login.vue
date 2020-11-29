@@ -2,13 +2,16 @@
     <div class="container pt-2">
         <h1 class="text-primary text-center">Log into your account</h1>
         <div class="d-flex justify-content-center ">
-            <div class="mt-5 bg-white ">
+            <div class="mt-5">
                 <div
                     v-if="loading"
                     class="spinner-border text-primary"
                     role="status"
                 ></div>
-                <div v-else class="pt-1 bg-primary border border-secondary w-75 container">
+                <div
+                    v-else
+                    class="pt-1 bg-primary border border-secondary w-75 container"
+                >
                     <div class="form-row p-3">
                         <div class="form-group col-12">
                             <label for="email" class="form-label text-light"
@@ -56,7 +59,7 @@
                                 {{ error }}
                             </div>
                         </div>
-                        <div class="form-group col-12 text-center w-100">
+                        <div class="form-group col-12 text-center w-75">
                             <button class="btn-light" @click="validate()">
                                 Login
                             </button>
@@ -64,7 +67,9 @@
                         <div class="form-group col-12 text-center">
                             <strong class="text-light"
                                 >New user?
-                                <router-link class="text-light" :to="{ name: 'register' }"
+                                <router-link
+                                    class="text-light"
+                                    :to="{ name: 'register' }"
                                     >Register</router-link
                                 >
                                 here.</strong
@@ -102,13 +107,12 @@ export default {
                 logIn();
                 this.$store.dispatch("checkUser");
                 setTimeout(() => {
-                    this.$router.push({name: 'landing'});
-                }, 2000)
+                    this.$router.push({ name: "landing" });
+                }, 2000);
             } catch (error) {
                 this.errors = error.response && error.response.data.errors;
                 this.loading = false;
             }
-
         },
         errorHandler(field) {
             return this.errors ? this.errors[field] : null;
@@ -118,11 +122,11 @@ export default {
 </script>
 
 <style scoped>
-    label {
-        font-weight: bolder;
-    }
-    .invalid-feedback {
-        font-weight: bold;
-        color: white;
-    }
+label {
+    font-weight: bolder;
+}
+.invalid-feedback {
+    font-weight: bold;
+    color: white;
+}
 </style>

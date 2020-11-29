@@ -1,8 +1,8 @@
 <template>
-        <div class="col-lg-4 col-md-6 col-sm-6 mb-2">
-        <div class="card">
+    <div class="col-lg-4 col-md-6 col-sm-6 mb-2 p-0 align-self-stretch">
+        <div class="card" style="height: 100%">
             <div class="card-header bg-primary text-light">
-                Reference: {{ merchant_transaction_id }}
+                Reference: <strong>{{ merchant_transaction_id }}</strong>
             </div>
             <div class="card-body row">
                 <div class="col-6">
@@ -10,16 +10,24 @@
                 </div>
                 <div class="col-6">
                     <strong>Date: {{ created_at }}</strong>
-                    </div>
-                </div>
-                <div v-if="!refunded" class="card-footer bg-white text-center">
-                    <button class="btn-primary" @click="loadRefund()">Request Refund</button>
-                </div>
-                <div v-else class="text-center">
-                    <p>Payment refunded</p>
                 </div>
             </div>
+            <div
+                v-if="!refunded"
+                class="card-footer border-white bg-white text-center"
+            >
+                <button class="btn-primary" @click="loadRefund()">
+                    Request Refund
+                </button>
+            </div>
+            <div
+                v-else
+                class="text-center pb-3 border-white card-footer bg-white"
+            >
+                <strong>Payment Refunded</strong>
+            </div>
         </div>
+    </div>
 </template>
 
 <script>
@@ -33,18 +41,20 @@ export default {
         refunded: Number
     },
     methods: {
-       async loadRefund() {
-
+        async loadRefund() {
             try {
-               const req = await axios.post(`/api/payments/${this.id}/${this.payment_code}`);
+                const req = await axios.post(
+                    `/api/payments/${this.id}/${this.payment_code}`
+                );
                 console.log(req);
 
-                if(req.status === 200) {
+                if (req.status === 200) {
                     alert(req.data.result.description);
                     this.$router.go();
                 }
             } catch (error) {
-                console.log(error);
+                alert(error.req.data.errors);
+                this.$router.go();
             }
         }
     }

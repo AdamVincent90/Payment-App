@@ -15,10 +15,26 @@
     <script src="{{asset('js/app.js')}}" defer></script>
 </head>
 
-<body class="antialiased">
+<body class="antialiased" style="background-color: rgba(231, 231, 231, 0.699)">
     <div id="app">
         <index></index>   
     </div>
 </body>
 
 </html>
+
+<style>
+    .bg-primary {
+        background-color: rgba(10, 10, 187, 0.678) !important;
+    }
+    .text-primary {
+        color:  rgba(10, 10, 187, 0.678) !important;
+    }
+    .btn-primary {
+        background-color:  rgba(10, 10, 187, 0.678) !important;
+        border-color: rgba(10, 10, 187, 0.678) !important;
+    }
+    .btn-primary:hover {
+        background-color:  rgba(43, 43, 185, 0.603) !important;
+    }
+</style>

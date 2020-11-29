@@ -172,7 +172,7 @@
                 </div>
             </div>
             <div class="col-12 pt-4 pb-1 text-center">
-                <button class="btn-light w-75" @click.prevent="register">
+                <button class="btn-light w-50" @click.prevent="register">
                     Register
                 </button>
             </div>

@@ -75,7 +75,6 @@
             </div>
         </div>
         <div class="pt-5">
-        
             <form
                 ref="payment"
                 action="/confirmation/"
@@ -85,11 +84,10 @@
         </div>
         <div v-if="!referenceId" class="pt-1">
             <h4 class="text-secondary">Your Payment History</h4>
-            <div
+            <div class="text-center"
                 v-if="loading"
-                class="spinner-border d-flex text-primary justify-self-center"
-                role="status"
-            ></div>
+            ><p class="spinner-border mt-5 text-primary"
+                role="status"></p></div>
             <div v-else class="row d-flex align-items-stretch">
                 <payment
                     v-for="(payment, index) in payments"
@@ -112,7 +110,8 @@ export default {
             referenceId: null,
             payments: null,
             loading: false,
-            errors: null
+            errors: null,
+            user: null
         };
     },
     components: {
@@ -120,17 +119,16 @@ export default {
     },
     beforeCreate() {
         this.$store.dispatch("checkUser");
-    
     },
     async created() {
         this.loading = true;
         try {
             await axios.get("/sanctum/csrf-cookie");
             const user = await axios.get("/user");
+            this.user = user.data.name;
             const request = await axios.get(
                 `/api/users/${user.data.id}/payments`
             );
-
             this.payments = request.data.data;
             console.log(this.payments);
             this.loading = false;
@@ -146,7 +144,8 @@ export default {
                 const req = await axios.post("/payment", {
                     amount: this.amount,
                     reference: this.reference,
-                    currency: this.selected
+                    currency: this.selected,
+                    user: this.user
                 });
                 console.log(req);
                 this.referenceId = req.data.id;

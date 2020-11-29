@@ -2,9 +2,9 @@
     <div>
         <div
             v-if="loading"
-            class="spinner-border text-primary text-center"
-            role="status"
-        ></div>
+            class="text-center mt-5"
+        ><p class="spinner-border text-primary"
+            role="status"></p></div>
         <div v-else class="container">
             <div class="card">
                 <div class="card-header bg-light">
@@ -15,7 +15,7 @@
                     <h3>{{ resultDescription }}</h3>
                     <p>Your payments can be viewed from your landing page</p>
                 </div>
-                <div class="card-footer bg-light">
+                <div class="card-footer bg-light text-primary">
                     <router-link :to="{name: 'landing'}">Back</router-link>
                 </div>
             </div>

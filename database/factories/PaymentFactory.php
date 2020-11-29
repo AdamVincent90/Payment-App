@@ -23,7 +23,7 @@ class PaymentFactory extends Factory
      */
     public function definition()
     {
-        
+
         $paymentTypes = [
             'EUR',
             'GBP',
