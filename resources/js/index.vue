@@ -3,9 +3,10 @@
         <nav
             class="navbar bg-primary border-bottom border-shadow navbar-light mb-1"
         >
-            <p class="brand-logo text-light" style="letter-spacing: 2px">
-                Transaction App
-            </p>
+            <router-link 
+                class="nav-link text-light brand-logo" style="letter-spacing: 3px;"
+                :to="{name: 'books'}"
+            >Adam's Books</router-link>
             <router-link
                 v-if="!isLoggedIn"
                 class="nav-link ml-auto text-light"
