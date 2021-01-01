@@ -16,17 +16,14 @@
                     </div>
                 </div>
             </div>
-            <!-- <div class="col-lg-4 pt-2 col-sm-12 pl-0">
-                <check-stock :book_id="this.$route.params.book_id"></check-stock>
-            </div>
-            <review-list :book_id="this.$route.params.book_id"></review-list> --->
+            <review-list :book_id="this.$route.params.id"></review-list>
         </div> 
 </template>
 
 <script>
 
 // import CheckStock from "./CheckStock";
-// import ReviewList from "./ReviewList";
+import ReviewList from "./ReviewList";
 
 export default {
     data() {
@@ -35,10 +32,9 @@ export default {
         loading: false
         }
     },
-    // components: {
-    //     CheckStock,
-    //     ReviewList
-    // },
+    components: {
+        ReviewList
+    },
     created() {
         
         this.loading = true;

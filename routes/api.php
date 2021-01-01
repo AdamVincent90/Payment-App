@@ -6,7 +6,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PaymentConfirmationController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentRefundController;
+use App\Http\Controllers\ReviewListController;
 use App\Http\Controllers\UserPaymentsController;
+use App\Http\Resources\ReviewListResource;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +24,6 @@ use App\Http\Controllers\UserPaymentsController;
 Route::get('/confirmation/{resourcePath}', PaymentConfirmationController::class)->name('payment.confirmation');
 Route::get('/users/{id}/payments', UserPaymentsController::class)->name('user.payments');
 Route::post('/payments/{id}/{code}', PaymentRefundController::class)->name('user.payment.refund');
+Route::get('/books/{book}/reviews', ReviewListController::class)->name('book.reviews.index');
 Route::resource('/payments', PaymentController::class);
 Route::resource('/books', BookController::class);

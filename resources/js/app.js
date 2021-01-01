@@ -3,6 +3,7 @@ require('./bootstrap');
 import VueRouter from 'vue-router';
 import router from './routes';
 import Index from './index.vue';
+import StarRating from './components/shared/components/StarRating.vue';
 import Vuex from "vuex";
 import GlobalStore from "./store";
 
@@ -24,6 +25,8 @@ window.axios.interceptors.response.use(
         return Promise.reject(error);
     }
 );
+
+Vue.component('star-rating', StarRating);
 
 const app = new Vue({
     el: '#app',
