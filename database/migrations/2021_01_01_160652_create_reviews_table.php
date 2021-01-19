@@ -16,7 +16,6 @@ class CreateReviewsTable extends Migration
         Schema::create('reviews', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->string('name');
-            $table->date('date');
             $table->text('content');
             $table->decimal('rating');
             $table->foreignId('book_id')->constrained('books', 'id');

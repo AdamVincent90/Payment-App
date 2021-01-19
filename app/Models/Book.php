@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Book extends Model
 {
@@ -16,7 +17,24 @@ class Book extends Model
         'price'
     ];
 
-    public function reviews() {
+    public function reviews()
+    {
         return $this->hasMany(Review::class);
+    }
+
+    //Create static function to find this class review key by the paramate in route url
+
+    public static function findByReviewKey(string $key): ?Book 
+    {
+        return static::where('review_key', $key)->get()->first();
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($book) {
+            $book->review_key = Str::uuid();
+        });
     }
 }

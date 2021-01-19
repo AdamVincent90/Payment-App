@@ -26,7 +26,6 @@ class ReviewFactory extends Factory
             'id' => Str::uuid(),
             'name' => $this->faker->name,
             'content' => $this->faker->sentences(5, true),
-            'date' => $this->faker->date(),
             'rating' => $this->faker->numberBetween(1, 5)
         ];
     }

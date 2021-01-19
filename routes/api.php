@@ -8,7 +8,9 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\PaymentRefundController;
 use App\Http\Controllers\ReviewListController;
 use App\Http\Controllers\UserPaymentsController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Resources\ReviewListResource;
+use App\Http\Controllers\BookByReviewController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +29,5 @@ Route::post('/payments/{id}/{code}', PaymentRefundController::class)->name('user
 Route::get('/books/{book}/reviews', ReviewListController::class)->name('book.reviews.index');
 Route::resource('/payments', PaymentController::class);
 Route::resource('/books', BookController::class);
+Route::resource('/reviews', ReviewController::class);
+Route::get('/book-by-review/{key}', BookByReviewController::class)->name('book.review.show');

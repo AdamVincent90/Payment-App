@@ -10,10 +10,11 @@ class Review extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date',
         'rating',
         'content',
-        'name'
+        'name',
+        'id',
+        'created_at'
     ];
 
     // Overrides auto increment on this models UUID primary key

@@ -19,7 +19,7 @@
                     {{ review.created_at | fromNow }}
                 </div>
                 <div class="col-md-6 d-flex justify-content-end">
-                    <star-rating :rating="review.rating"></star-rating>
+                    <star-rating v-model="review.rating"></star-rating>
                 </div>
             </div>
             <div class="row pb-1">
@@ -45,7 +45,8 @@ export default {
     data() {
         return {
             loading: false,
-            reviews: null
+            reviews: null,
+            overall: null,
         };
     },
     created() {
@@ -57,6 +58,7 @@ export default {
                 this.reviews = response.data.data;
                 console.log(response);
                 this.loading = false;
+                
             })
             .catch(error => console.log(error));
     },

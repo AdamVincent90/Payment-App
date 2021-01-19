@@ -4,6 +4,7 @@ import Register from "./components/auth/register";
 import Landing from "./components/landing/landing";
 import Confirmation from "./components/landing/confirmation";
 import BookIndex from "./components/books/BookIndex.vue";
+import Review from "./components/review/Review";
 import BookInfoIndex from "./components/bookinfo/BookInfoIndex.vue";
 
 const routes = [
@@ -11,6 +12,11 @@ const routes = [
         path: "/confirmation",
         name: "confirmation",
         component: Confirmation
+    },
+    {
+        path: "/review/:id",
+        name: "review",
+        component: Review
     },
     {
         path: "/login",
